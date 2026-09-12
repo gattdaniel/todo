@@ -1,10 +1,20 @@
-<h1>Ma Todo List</h1>
+<h1>{{ 'TITLE' | translate }}</h1>
 
-<input type="text" [(ngModel)]="newTodo" placeholder="Nouvelle tâche" data-cy="todo-input" />
-<button (click)="addTodo()" data-cy="add-button">Ajouter</button>
+<input
+  type="text"
+  [(ngModel)]="newTodo"
+  [attr.placeholder]="'INPUT_PLACEHOLDER' | translate"
+  data-cy="todo-input"
+/>
+<button (click)="addTodo()" data-cy="add-button">{{ 'ADD_BUTTON' | translate }}</button>
 
 <ul data-cy="todo-list">
   @for (todo of todos(); track todo) {
     <li>{{ todo }}</li>
   }
 </ul>
+
+<div style="margin-top: 20px">
+  <button (click)="switchLang('fr')">🇫🇷 Français</button>
+  <button (click)="switchLang('en')">🇬🇧 English</button>
+</div>
