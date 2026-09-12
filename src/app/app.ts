@@ -1,12 +1,21 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [FormsModule],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('cypress-sandbox');
+  protected readonly todos = signal<string[]>([]);
+  protected newTodo = '';
+
+  addTodo() {
+    if (this.newTodo.trim()) {
+      this.todos.update((current) => [...current, this.newTodo.trim()]);
+      this.newTodo = '';
+    }
+  }
 }
