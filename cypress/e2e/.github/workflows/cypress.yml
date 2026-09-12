@@ -1,0 +1,17 @@
+name: Tests E2E Cypress
+
+on: push
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer les dépendances et lancer Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm install
+          start: npm start
+          wait-on: 'http://localhost:4200'
